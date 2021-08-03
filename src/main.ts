@@ -4,9 +4,9 @@ import { join } from 'path';
 
 import * as compression from 'compression';
 import * as helmet from 'helmet';
-import * as csurf from 'csurf';
-import * as morgan from 'morgan';
 import * as favicon from 'serve-favicon';
+import * as morgan from 'morgan';
+import * as csurf from 'csurf';
 
 import { AppModule } from './app.module';
 
