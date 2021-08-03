@@ -17,15 +17,15 @@ export class UserService {
     ];
   }
 
-  fetchUser(id: string) {
+  fetchUser(id: number) {
     switch (id) {
-      case '1':
+      case 1:
         return {
           id: 1,
           firstName: 'Sachin',
           lastName: 'Hegde',
         };
-      case '2':
+      case 2:
         return {
           id: 2,
           firstName: 'Mohini',

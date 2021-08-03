@@ -1,9 +1,12 @@
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
+import { join } from 'path';
 
 import * as compression from 'compression';
 import * as helmet from 'helmet';
 import * as csurf from 'csurf';
+import * as morgan from 'morgan';
+import * as favicon from 'serve-favicon';
 
 import { AppModule } from './app.module';
 
@@ -12,12 +15,13 @@ async function bootstrap() {
     logger: ['log', 'error', 'warn', 'verbose'],
   });
 
-  app.use(csurf());
   app.use(compression());
   app.use(helmet());
+  app.use(favicon(join(__dirname, 'assets', 'favicon.ico')));
+  app.use(morgan('dev'));
 
   const config = app.get(ConfigService);
-  console.log(config);
-  await app.listen(config.get('PORT'));
+  await app.listen(config.get('APP_PORT'));
+  app.use(csurf());
 }
 bootstrap();
